@@ -3,6 +3,8 @@ package com.solucionexpress.microservicios.commons.examenes.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Examen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
     private String nombre;
     
     @Column(name = "create_at")
@@ -28,7 +30,8 @@ public class Examen {
     @JsonIgnoreProperties(value = {"examen"},allowSetters = true)
     @OneToMany(mappedBy = "examen",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pregunta> preguntas;
-    
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Asignatura asignatura;
     
