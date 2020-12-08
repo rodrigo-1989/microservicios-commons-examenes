@@ -34,6 +34,9 @@ public class Examen {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Asignatura asignatura;
+
+    @Transient
+    private boolean respondido;
     
 
     @PrePersist
@@ -103,6 +106,13 @@ public class Examen {
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
 	}
-	 
+
+    public boolean isRespondido() {
+        return respondido;
+    }
+
+    public void setRespondido(boolean respondido) {
+        this.respondido = respondido;
+    }
 }
 
